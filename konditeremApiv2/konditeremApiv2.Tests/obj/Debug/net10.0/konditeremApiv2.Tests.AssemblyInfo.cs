@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("konditeremApiv2.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75aa5673e73d5822340cba49b304f61990985390")]
 [assembly: System.Reflection.AssemblyProductAttribute("konditeremApiv2.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("konditeremApiv2.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

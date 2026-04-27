@@ -1,0 +1,834 @@
+/* =========================================
+1. ALAP
+========================================= */
+body.dark {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #020617;
+}
+
+.topbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.topbar a:hover {
+    color: #0ea5e9;
+}
+
+.search input {
+    width: 90%;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: white;
+    transition: border-color 0.3s;
+}
+
+.search input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    background: #233045;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+.gym-list {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+/* =========================================
+2. KÁRTYÁK
+========================================= */
+.gym-card {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 15px;
+    width: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gym-card:hover {
+    transform: translateY(-8px);
+    background: #233045;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #0ea5e9;
+}
+
+.gym-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.5s ease;
+}
+
+.gym-card:hover img {
+    transform: scale(1.05);
+}
+
+.gym-card h3 {
+    font-size: 1.2rem;
+    color: #0ea5e9;
+    margin-bottom: 10px;
+}
+
+.gym-card p {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: #cbd5e1;
+}
+
+/* =========================================
+3. GOMBOK
+========================================= */
+.btn {
+    background: #0ea5e9;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    background: #0284c7;
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+}
+
+.btn.full {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-outline-light,
+.gym-card .btn {
+    background: #0ea5e9 !important;
+    color: #ffffff !important;
+    border: 2px solid #0ea5e9 !important;
+    font-weight: bold;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.btn-outline-light:hover,
+.gym-card .btn:hover {
+    background: #0284c7 !important;
+    border-color: #0284c7 !important;
+}
+
+/* =========================================
+4. LOGIN / ÁLTALÁNOS CARD
+========================================= */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: #1e293b !important;
+    padding: 32px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    width: 100%;
+    max-width: 420px;
+    margin: 40px auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.45) !important;
+    color: #ffffff !important;
+}
+
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+    color: #ffffff !important;
+    margin-bottom: 20px;
+}
+
+.card p {
+    color: #cbd5e1 !important;
+}
+
+.card a {
+    color: #38bdf8 !important;
+    text-decoration: none !important;
+}
+
+.card a:hover {
+    text-decoration: underline !important;
+}
+
+/* =========================================
+5. INPUTOK / FORMOK
+========================================= */
+input,
+textarea,
+select {
+    color: #ffffff !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+.form-control,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+    padding: 10px;
+    border-radius: 6px;
+    color: #ffffff !important;
+}
+
+.card input,
+.card select,
+.card textarea {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    color: #ffffff !important;
+}
+
+label,
+.form-label {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+/* =========================================
+6. FOOTER
+========================================= */
+.main-footer {
+    background: #020617;
+    color: white;
+}
+
+.main-footer h5,
+.main-footer h6 {
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.main-footer p,
+.main-footer span,
+.main-footer .muted,
+.main-footer div {
+    color: #cbd5e1 !important;
+}
+
+.main-footer .text-primary {
+    color: #38bdf8 !important;
+}
+
+footer {
+    color: #cbd5e1;
+}
+
+footer p,
+footer span,
+footer div {
+    color: inherit;
+}
+
+/* =========================================
+7. MISC
+========================================= */
+.hero {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.content {
+    padding: 15px;
+}
+
+.muted {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================================
+8. LOGÓ
+========================================= */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none !important;
+}
+
+.brand-logo svg {
+    color: #ffffff;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.brand-text {
+    font-size: 2.1rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #ffffff;
+    transition: color 0.3s;
+    margin-bottom: 0;
+}
+
+.brand-logo:hover .brand-text,
+.brand-logo:hover svg {
+    color: #0ea5e9 !important;
+}
+
+.brand-logo:hover svg {
+    transform: rotate(-15deg) scale(1.1);
+}
+
+/* =========================================
+9. HERO VIDEO
+========================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white !important;
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: #ffffff !important;
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 1) !important;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 1) !important;
+    margin-bottom: 25px;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-search {
+    border-radius: 50px !important;
+    padding: 15px 30px !important;
+    border: 2px solid transparent !important;
+    font-size: 1.2rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    background-color: white !important;
+    color: #0f172a !important;
+}
+
+.hero-search:focus {
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4) !important;
+    transform: scale(1.02);
+}
+
+/* =========================================
+10. LIGHT MODE
+========================================= */
+body.light-mode {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+body.light-mode .topbar,
+body.light-mode .main-footer {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+}
+
+body.light-mode .gym-card,
+body.light-mode .card,
+body.light-mode .info-card,
+body.light-mode .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.light-mode .topbar a,
+body.light-mode .nav-link,
+body.light-mode .brand-text {
+    color: #0f172a !important;
+}
+
+body.light-mode .topbar a:hover,
+body.light-mode .nav-link:hover,
+body.light-mode .brand-logo:hover .brand-text,
+body.light-mode .brand-logo:hover svg {
+    color: #0ea5e9 !important;
+}
+
+body.light-mode .brand-logo svg {
+    color: #0f172a !important;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode p,
+body.light-mode span,
+body.light-mode label,
+body.light-mode li,
+body.light-mode strong,
+body.light-mode small {
+    color: #0f172a !important;
+}
+
+body.light-mode .gym-card p,
+body.light-mode .muted,
+body.light-mode footer,
+body.light-mode footer p,
+body.light-mode .main-footer p,
+body.light-mode .main-footer span,
+body.light-mode .main-footer .muted,
+body.light-mode .main-footer div {
+    color: #475569 !important;
+}
+
+body.light-mode .main-footer h5,
+body.light-mode .main-footer h6 {
+    color: #0f172a !important;
+}
+
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select,
+body.light-mode .form-control {
+    color: #0f172a !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .card input,
+body.light-mode .card textarea,
+body.light-mode .card select {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+    color: #64748b !important;
+}
+
+body.light-mode .text-primary,
+body.light-mode .icon-text {
+    color: #0ea5e9 !important;
+}
+
+body.light-mode .hero-content h1,
+body.light-mode .hero-content p {
+    color: #ffffff !important;
+}
+
+body.light-mode .contact-content-wrapper {
+    background: #ffffff !important;
+}
+
+body.light-mode footer.text-center {
+    background: #ffffff !important;
+    border-top: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode footer.text-center p {
+    color: #475569 !important;
+}
+
+/* =========================================
+11. MOBIL
+========================================= */
+@media screen and (max-width: 768px) {
+    .topbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .gym-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gym-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .search input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero-section {
+        height: 60vh;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .brand-text {
+        font-size: 1.7rem;
+    }
+}
+/* =========================================
+12. PROFIL OLDAL DESIGN UPGRADE
+========================================= */
+
+.profile-page {
+    position: relative;
+    min-height: 100vh;
+    background-color: #0f172a !important;
+    background-image:
+        linear-gradient(rgba(2, 6, 23, 0.68), rgba(15, 23, 42, 0.94)),
+        url("/assets/profile_bg.png") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+.profile-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(239, 68, 68, 0.10), transparent 28%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.profile-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+.profile-hero {
+    position: relative;
+    padding: 70px 0 40px;
+}
+
+.profile-hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.profile-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.profile-hero-box {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 34px 28px;
+    border-radius: 26px;
+    background: rgba(15, 23, 42, 0.58);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+}
+
+.profile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(14, 165, 233, 0.16);
+    color: #7dd3fc;
+    border: 1px solid rgba(125, 211, 252, 0.20);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.profile-hero-box h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff !important;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.profile-hero-box p {
+    color: #cbd5e1 !important;
+    font-size: 1.08rem;
+    margin-bottom: 0;
+}
+
+.profile-content {
+    margin-top: 10px;
+}
+
+.profile-section-card {
+    background: rgba(15, 23, 42, 0.68);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 28px;
+    padding: 34px 28px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.24);
+}
+
+.favorites-section {
+    border-color: rgba(239, 68, 68, 0.16);
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-kicker {
+    display: inline-block;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.section-subtext {
+    color: #94a3b8 !important;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#my-tickets-container .card,
+#my-favorites-container .card {
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.98)) !important;
+    border: 1px solid rgba(148, 163, 184, 0.14) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+#my-tickets-container .card:hover,
+#my-favorites-container .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 45px rgba(0, 0, 0, 0.32) !important;
+    border-color: rgba(14, 165, 233, 0.28) !important;
+}
+
+#my-tickets-container .card h4,
+#my-favorites-container .card h4 {
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+#my-tickets-container .card p,
+#my-favorites-container .card p {
+    color: #dbeafe !important;
+}
+
+#my-favorites-container .card img {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#my-favorites-container .btn-outline-light {
+    background: rgba(14, 165, 233, 0.18) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(125, 211, 252, 0.28) !important;
+}
+
+#my-favorites-container .btn-outline-light:hover {
+    background: rgba(14, 165, 233, 0.32) !important;
+    border-color: rgba(125, 211, 252, 0.45) !important;
+}
+
+#my-favorites-container .btn-danger {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#my-favorites-container .btn-danger:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.24) !important;
+}
+
+body.light-mode.profile-page {
+    background-color: #f8fafc !important;
+    background-image:
+        linear-gradient(rgba(248, 250, 252, 0.88), rgba(255, 255, 255, 0.96)),
+        url("/assets/profile_bg.png") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+body.light-mode .profile-page::before {
+    background:
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.10), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(239, 68, 68, 0.07), transparent 28%);
+}
+
+body.light-mode .profile-hero-box,
+body.light-mode .profile-section-card {
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(148, 163, 184, 0.22) !important;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.10) !important;
+}
+
+body.light-mode .profile-hero-box h1 {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+body.light-mode .profile-hero-box p,
+body.light-mode .section-subtext {
+    color: #475569 !important;
+}
+
+body.light-mode #my-tickets-container .card,
+body.light-mode #my-favorites-container .card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98)) !important;
+    border: 1px solid rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.light-mode #my-tickets-container .card p,
+body.light-mode #my-favorites-container .card p {
+    color: #334155 !important;
+}
+
+body.light-mode .profile-badge {
+    background: rgba(14, 165, 233, 0.12);
+    color: #0369a1;
+    border-color: rgba(3, 105, 161, 0.18);
+}
+
+@media screen and (max-width: 768px) {
+    .profile-hero {
+        padding: 42px 0 24px;
+    }
+
+    .profile-hero-box {
+        padding: 26px 20px;
+        border-radius: 20px;
+    }
+
+    .profile-hero-box h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-section-card {
+        padding: 24px 18px;
+        border-radius: 22px;
+    }
+}
+.main-footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.main-footer a:hover {
+    color: #38bdf8 !important;
+    opacity: 1 !important;
+}

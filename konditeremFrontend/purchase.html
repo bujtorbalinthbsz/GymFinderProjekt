@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bérlet Foglalása - Gym Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark">
+
+<header class="topbar d-flex justify-content-between align-items-center p-3 sticky-top" style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); z-index: 1000;">
+    <a href="index.html" class="brand-logo text-decoration-none d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="#38bdf8">
+            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+        </svg>
+        <span class="brand-text text-white ms-2 fw-bold">Gym Finder</span>
+    </a>
+    
+    <nav class="d-flex align-items-center">
+        <a href="index.html" class="nav-link text-white text-decoration-none me-4 fw-bold">Főoldal</a>
+        <a href="kapcsolat.html" class="nav-link text-white text-decoration-none me-4 fw-bold">Kapcsolat</a>
+        <a href="profil.html" id="profile-link" class="text-info text-decoration-none me-4 fw-bold" style="display:none;">Profil</a>
+        <a href="admin.html" id="admin-link" class="text-danger text-decoration-none me-4 fw-bold" style="display:none;">Admin</a>
+        <span id="user-info" class="me-2 text-success fw-bold"></span>
+        <a href="login.html" id="login-link" class="btn btn-outline-light">Login</a>
+        <button onclick="toggleTheme()" class="btn btn-outline-info me-2 ms-3" id="theme-toggle">Sötét/Világos Mód</button>
+        <button id="logout-btn" class="btn btn-danger ms-2" style="display:none; padding: 5px 15px;">Kijelentkezés</button>
+    </nav>
+</header>
+
+<div class="container mt-5 mb-5">
+    <div class="card p-4 m-auto shadow-lg border-secondary" style="max-width: 600px; border-radius: 16px;">
+        <h2 class="text-center text-primary mb-4" id="purchase-title">Bérlet Foglalása</h2>
+        
+        <h4 class="text-center text-info mb-4" id="purchase-gym-name">Kiválasztott bérlet megvétele</h4>
+
+        <div class="mb-4">
+            <label class="form-label text-muted">Válassz bérletet:</label>
+            <select id="product-select" class="form-select border-0" style="padding: 12px;">
+                <option value="2500">Napi jegy - 2.500 Ft</option>
+                <option value="12000">Havi bérlet - 12.000 Ft</option>
+                <option value="30000">3 Havi bérlet - 30.000 Ft</option>
+            </select>
+        </div>
+
+        <div class="mb-5 text-center p-3 rounded" style="background-color: rgba(14, 165, 233, 0.1); border: 1px solid #0ea5e9;">
+            <p class="mb-0 text-white"><strong class="text-info">Fizetési mód:</strong> Helyszínen, készpénzzel.</p>
+            <p class="mb-0 text-muted small mt-1">Kérjük, érkezéskor fizesse ki a bérlet árát a recepción.</p>
+        </div>
+
+        <button id="submit-purchase" class="btn btn-primary w-100 fw-bold fs-5" style="padding: 15px;">Foglalás véglegesítése</button>
+        
+        <div class="text-center mt-3">
+            <a href="index.html" class="text-muted text-decoration-none">Mégse, visszalépés</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

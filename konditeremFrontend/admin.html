@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Gym Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .admin-shell {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            background: rgba(2, 6, 23, 0.95);
+            border-right: 1px solid rgba(148, 163, 184, 0.15);
+            padding: 24px 18px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            backdrop-filter: blur(14px);
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .admin-brand h2 {
+            font-size: 1.35rem;
+            margin: 0;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .admin-brand small {
+            color: #94a3b8;
+        }
+
+        .sidebar-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .sidebar-card h6 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-muted {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-nav .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #e2e8f0;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.08);
+            transition: 0.2s ease;
+        }
+
+        .sidebar-nav .nav-btn:hover,
+        .sidebar-nav .nav-btn.active {
+            background: rgba(14, 165, 233, 0.16);
+            color: #ffffff;
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .admin-main {
+            padding: 28px;
+        }
+
+        .admin-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .admin-topbar h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .admin-topbar p {
+            margin: 6px 0 0;
+            color: #94a3b8;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .panel-card {
+            background: rgba(30, 41, 59, 0.94);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .panel-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .panel-subtitle {
+            margin: 4px 0 0;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .search-box .input-group-text,
+        .search-box .form-control {
+            background: #0f172a;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            color: #ffffff;
+        }
+
+        .search-box .form-control::placeholder {
+            color: #64748b;
+        }
+
+        .custom-table {
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background: #0f172a !important;
+            color: #cbd5e1 !important;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18) !important;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+            border-color: rgba(148, 163, 184, 0.08) !important;
+        }
+
+        .gym-name-cell {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .muted-cell {
+            color: #94a3b8;
+            font-size: 0.92rem;
+        }
+
+        .image-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.12);
+            color: #7dd3fc;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-soft-info {
+            background: rgba(14, 165, 233, 0.16);
+            color: #7dd3fc;
+            border: 1px solid rgba(14, 165, 233, 0.32);
+        }
+
+        .btn-soft-info:hover {
+            background: rgba(14, 165, 233, 0.28);
+            color: white;
+        }
+
+        .btn-soft-danger {
+            background: rgba(239, 68, 68, 0.14);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.28);
+        }
+
+        .btn-soft-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+            color: white;
+        }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 22px;
+        }
+
+        .modal-header,
+        .modal-footer {
+            border-color: rgba(148, 163, 184, 0.12);
+        }
+
+        .modal-title {
+            font-weight: 800;
+        }
+
+        .preview-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px dashed rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .preview-box img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .preview-placeholder {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .empty-box {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+        }
+
+        .d-none-force {
+            display: none !important;
+        }
+
+        @media (max-width: 992px) {
+            .admin-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-sidebar {
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-main {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body class="dark">
+
+<div class="admin-shell">
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <div style="font-size: 2rem;">⚙️</div>
+            <div>
+                <h2>Gym Finder</h2>
+                <small>Admin panel</small>
+            </div>
+        </div>
+
+        <div class="sidebar-card">
+            <h6>Hozzáférés</h6>
+            <div class="sidebar-muted" id="admin-role-status">Jogosultság ellenőrzése...</div>
+        </div>
+
+        <div class="sidebar-nav mb-3">
+            <a href="#" class="nav-btn active">
+                <i class="bi bi-building"></i>
+                <span>Termek kezelése</span>
+            </a>
+            <a href="index.html" class="nav-btn">
+                <i class="bi bi-house-door"></i>
+                <span>Főoldal</span>
+            </a>
+            <a href="profil.html" class="nav-btn">
+                <i class="bi bi-person-circle"></i>
+                <span>Profil</span>
+            </a>
+        </div>
+
+        <div class="sidebar-card">
+            <h6>Mit tud ez a panel?</h6>
+            <div class="sidebar-muted">
+                Termek listázása, keresése, szerkesztése és törlése. 
+            </div>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <div id="admin-access-denied" class="alert alert-danger d-none-force">
+            Ehhez az oldalhoz admin jogosultság kell. Jelentkezz be admin felhasználóval.
+        </div>
+
+        <div id="admin-panel">
+            <div class="admin-topbar">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Kezelőfelület a Gym Finder konditermekhez.</p>
+                </div>
+
+                <div class="topbar-actions">
+                    <button id="refresh-admin-btn" class="btn btn-info fw-bold">
+                        <i class="bi bi-arrow-clockwise"></i> Frissítés
+                    </button>
+                    <button id="admin-logout-btn" class="btn btn-danger fw-bold">
+                        <i class="bi bi-box-arrow-right"></i> Kijelentkezés
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Összes terem</div>
+                    <div class="stat-value" id="gym-count">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Képpel rendelkező termek</div>
+                    <div class="stat-value" id="gym-image-count">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Szűrt találatok</div>
+                    <div class="stat-value" id="gym-filter-count">0</div>
+                </div>
+            </div>
+
+            <section class="panel-card">
+                <div class="panel-header">
+                    <div>
+                        <h3 class="panel-title">Konditermek kezelése</h3>
+                        <p class="panel-subtitle">Szerkeszd gyorsan a neveket, elérhetőségeket, nyitvatartást és a képfájlokat.</p>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" id="admin-search" class="form-control" placeholder="Keresés név, telefon vagy email alapján...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-table">
+                    <table class="table table-dark table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Név</th>
+                                <th>Nyitvatartás</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Kép</th>
+                                <th>Műveletek</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tbody">
+                            <tr>
+                                <td colspan="7" class="text-center py-4">Adatok betöltése...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<div class="modal fade" id="editGymModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content text-white">
+            <div class="modal-header">
+                <h5 class="modal-title">Terem szerkesztése</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="edit-id">
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Terem neve</label>
+                        <input type="text" id="edit-name" class="form-control" placeholder="Pl. Aero Fitness">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Nyitvatartás</label>
+                        <input type="text" id="edit-openAt" class="form-control" placeholder="Pl. H-P: 06:00-22:00">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Telefon</label>
+                        <input type="text" id="edit-phone" class="form-control" placeholder="+36 ...">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="edit-email" class="form-control" placeholder="info@....hu">
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label">Kép fájlneve</label>
+                        <input type="text" id="edit-imagePath" class="form-control" placeholder="Pl. aero.jpg">
+                        <div class="form-text text-secondary">A képet a backend wwwroot/images mappájában keresni fogja.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Kép előnézet</label>
+                        <div class="preview-box" id="image-preview-box">
+                            <div class="preview-placeholder">Nincs kiválasztva kép</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <div class="text-secondary small">Mentés előtt ellenőrizd a fájlnevet.</div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+                    <button type="button" id="save-edit-btn" class="btn btn-success fw-bold">
+                        <i class="bi bi-floppy"></i> Mentés
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

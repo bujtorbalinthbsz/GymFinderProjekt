@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilom - Gym Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark profile-page">
+
+<header class="topbar d-flex justify-content-between align-items-center p-3 sticky-top" style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); z-index: 1000;">
+    <a href="index.html" class="brand-logo text-decoration-none d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="#38bdf8">
+            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+        </svg>
+        <span class="brand-text text-white ms-2 fw-bold">Gym Finder</span>
+    </a>
+
+    <nav class="d-flex align-items-center">
+        <a href="index.html" class="nav-link text-white text-decoration-none me-4 fw-bold">Főoldal</a>
+        <a href="kapcsolat.html" class="nav-link text-white text-decoration-none me-4 fw-bold">Kapcsolat</a>
+        <a href="profil.html" id="profile-link" class="text-info text-decoration-none me-4 fw-bold" style="display:none;">Profil</a>
+        <a href="admin.html" id="admin-link" class="text-danger text-decoration-none me-4 fw-bold" style="display:none;">Admin</a>
+        <span id="user-info" class="me-2 text-success fw-bold"></span>
+        <a href="login.html" id="login-link" class="btn btn-outline-light">Login</a>
+        <button onclick="toggleTheme()" class="btn btn-outline-info me-2 ms-3" id="theme-toggle">Sötét/Világos Mód</button>
+        <button id="logout-btn" class="btn btn-danger ms-2" style="display:none; padding: 5px 15px;">Kijelentkezés</button>
+    </nav>
+</header>
+
+<div class="profile-hero">
+    <div class="profile-hero-overlay"></div>
+    <div class="container profile-hero-content">
+        <div class="profile-hero-box">
+            <span class="profile-badge"><i class="bi bi-stars"></i> Saját fiók</span>
+            <h1>Profilközpont</h1>
+            <p>Itt látod a megvásárolt bérleteidet és az elmentett kedvenc termeidet.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container profile-content pb-5">
+    <section class="profile-section-card mb-5">
+        <div class="section-heading text-center">
+            <span class="section-kicker text-primary">Bérletek</span>
+            <h2 class="fw-bold mb-2">Megvásárolt bérleteim</h2>
+            <p class="section-subtext">Az aktív és korábbi vásárlásaid egy helyen.</p>
+        </div>
+
+        <div id="my-tickets-container" class="row justify-content-center mb-2 align-items-stretch">
+            <div class="col-12 text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Betöltés...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile-section-card favorites-section">
+        <div class="section-heading text-center">
+            <span class="section-kicker text-danger">Kedvencek</span>
+            <h2 class="fw-bold mb-2">
+                <i class="bi bi-heart-fill me-2"></i>Kedvenc termeim
+            </h2>
+            <p class="section-subtext">Gyors elérés a kedvenc termeidhez.</p>
+        </div>
+
+        <div id="my-favorites-container" class="row justify-content-center align-items-stretch">
+            <div class="col-12 text-center py-4">
+                <div class="spinner-border text-danger" role="status">
+                    <span class="visually-hidden">Betöltés...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

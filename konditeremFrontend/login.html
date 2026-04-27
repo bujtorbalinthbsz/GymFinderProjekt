@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Bejelentkezés és Regisztráció</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark center">
+
+<div class="card">
+    <div id="login-section">
+        <h2>Bejelentkezés</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Jelszó">
+        
+        <button class="btn full" onclick="handleLoginClick()">Belépés</button>
+        
+        <p style="margin-top: 15px; font-size: 0.9rem;">
+            Nincs még fiókod? <a href="#" onclick="toggleForm()" style="color: #38bdf8; text-decoration: none; font-weight: bold;">Regisztrálj itt!</a>
+        </p>
+    </div>
+
+    <div id="register-section" style="display: none;">
+        <h2>Regisztráció</h2>
+        <input type="text" id="reg-name" placeholder="Teljes név">
+        <input type="email" id="reg-email" placeholder="Email cím">
+        <input type="password" id="reg-password" placeholder="Jelszó">
+        <input type="password" id="reg-password-again" placeholder="Jelszó újra">
+        
+        <button class="btn full" onclick="handleRegisterClick()">Fiók létrehozása</button>
+        
+        <p style="margin-top: 15px; font-size: 0.9rem;">
+            Van már fiókod? <a href="#" onclick="toggleForm()" style="color: #38bdf8; text-decoration: none; font-weight: bold;">Jelentkezz be!</a>
+        </p>
+    </div>
+
+    <p class="muted" style="margin-top: 20px;">Gym Finder Rendszer</p>
+    <p><a href="index.html" style="color: #007bff; text-decoration: none;">Vissza a főoldalra</a></p>
+</div>
+
+<script>
+    const API_URL = "http://localhost:5131/api";
+
+    function toggleForm() {
+        const loginSec = document.getElementById('login-section');
+        const registerSec = document.getElementById('register-section');
+        loginSec.style.display = (loginSec.style.display === 'none') ? 'block' : 'none';
+        registerSec.style.display = (registerSec.style.display === 'none') ? 'block' : 'none';
+    }
+
+    async function handleLoginClick() {
+        const emailVal = document.getElementById('email').value.trim();
+        const passVal = document.getElementById('password').value;
+
+        if (!emailVal || !passVal) {
+            alert("Kérlek töltsd ki mindkét mezőt!");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: emailVal, password: passVal })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                const token = data.token || data.Token;
+                const userId = data.userId || data.UserId || data.id || data.Id || (data.user && data.user.id);
+
+                if (!token) {
+                    alert("A backend nem adott vissza tokent.");
+                    return;
+                }
+
+                if (!userId) {
+                    alert("Sikeres belépés, de a backend nem adott vissza userId-t.");
+                    return;
+                }
+
+                localStorage.setItem("token", token);
+                localStorage.setItem("userId", userId.toString());
+                localStorage.setItem("userEmail", emailVal);
+
+                alert("Sikeres bejelentkezés!");
+                window.location.href = "index.html";
+            } else {
+                let msg = "Hiba: Rossz email vagy jelszó!";
+                try {
+                    const errorText = await response.text();
+                    if (errorText) msg = errorText;
+                } catch {}
+                alert(msg);
+            }
+        } catch (error) {
+            console.error("Login hiba:", error);
+            alert("Nem sikerült elérni a szervert!");
+        }
+    }
+
+    async function handleRegisterClick() {
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const pass = document.getElementById('reg-password').value;
+        const passAgain = document.getElementById('reg-password-again').value;
+
+        if (!name || !email || !pass) {
+            alert("Minden mezőt tölts ki!");
+            return;
+        }
+
+        if (pass !== passAgain) {
+            alert("A két jelszó nem egyezik!");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/auth/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, password: pass })
+            });
+
+            if (response.ok) {
+                alert("Sikeres regisztráció! Most már bejelentkezhetsz.");
+                toggleForm();
+            } else {
+                let msg = "Sikertelen regisztráció";
+                try {
+                    const errorText = await response.text();
+                    if (errorText) msg = errorText;
+                } catch {}
+                alert("Hiba: " + msg);
+            }
+        } catch (err) {
+            console.error("Register hiba:", err);
+            alert("Hiba a szerver elérésekor!");
+        }
+    }
+</script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
